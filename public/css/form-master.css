@@ -1,0 +1,277 @@
+/* --- VARIABLES --- */
+:root {
+    --color-navy: #0A1931;
+    --color-cream: #F7F5F0;
+    --color-text-dark: #333333;
+    --color-accent-hover: #1c3d66;
+    --color-border-dark: #1c3d66;
+    --color-status-active: #38A169;
+    --color-logout-red: #e74c3c;
+    --color-backgorund: #ffffff;
+    --color-active-green: #38A169;
+    --color-add-item-cyan: #00C4FF;
+}
+
+/* --- CONTAINER & CARD --- */
+.card-table, .card-form {
+    background-color: var(--color-cream);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.table-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card {
+    background-color: var(--color-cream);
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.card .card-body {
+    background-color: inherit;
+}
+
+.card-header.bg-light {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.card-header h5 {
+    color: var(--color-text-dark);
+}
+
+/* --- FORM ELEMENTS --- */
+.form-label {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.form-control, .form-select {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--color-navy);
+    box-shadow: 0 0 0 0.25rem rgba(10, 25, 49, 0.25);
+}
+
+.form-control-plaintext {
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.form-control-plaintext.item-subtotal {
+    font-weight: 600;
+    color: var(--color-text-dark);
+    padding-top: 0.375rem;
+    padding-bottom: 0.375rem;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    display: block;
+    width: 100%;
+}
+
+.form-control-plaintext.text-end.h5 {
+    color: var(--color-navy) !important;
+}
+
+.list-group-item {
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.list-group-item.bg-light {
+    background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* --- TABEL DARK THEME --- */
+.dark-table-theme {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.dark-table-theme thead tr {
+    background-color: #0A1931; /* Navy */
+    color: #F7F5F0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dark-table-theme th {
+    padding: 15px 18px;
+    text-align: left;
+    border: none;
+}
+
+.dark-table-theme tbody tr {
+    background-color: white;
+    color: #333;
+}
+
+.dark-table-theme tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.dark-table-theme tbody tr:hover {
+    background-color: #f0f0f0;
+}
+
+.dark-table-theme td {
+    border: 1px solid #e0e0e0;
+    padding: 12px 15px;
+    vertical-align: middle;
+}
+
+.dark-table-theme td.td-center, 
+.dark-table-theme th.text-center {
+    text-align: center;
+}
+
+.dark-table-theme td.text-end, 
+.dark-table-theme th.text-end {
+    text-align: right;
+}
+
+.empty-row td {
+    background-color: #fcf8e3;
+    color: #8a6d3b;
+    text-align: center;
+    font-style: italic;
+    padding: 30px;
+}
+
+/* --- TOMBOL (GENERAL) --- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    gap: 5px;
+}
+
+.btn-create { background-color: #38A169; }
+.btn-create:hover { background-color: #2f855a; color: white; }
+
+.btn-edit { background-color: #3182ce; }
+.btn-edit:hover { background-color: #2b6cb0; color: white; }
+
+.btn-delete { background-color: #e74c3c; }
+.btn-delete:hover { background-color: #c0392b; color: white; }
+
+.btn-view { background-color: #0ea5e9; }
+.btn-view:hover { background-color: #0284c7; color: white; }
+
+.action-cell {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* --- TOMBOL KHUSUS --- */
+.btn-primary {
+    background-color: var(--color-navy) !important;
+    border-color: var(--color-navy) !important;
+    color: var(--color-cream) !important;
+}
+.btn-primary:hover {
+    background-color: var(--color-accent-hover) !important;
+    border-color: var(--color-accent-hover) !important;
+}
+
+.btn-danger {
+    background-color: var(--color-logout-red) !important;
+    border-color: var(--color-logout-red) !important;
+}
+.btn-danger:hover {
+    opacity: 0.9;
+}
+
+.btn-outline-secondary {
+    color: var(--color-text-dark) !important;
+    border-color: #ccc !important;
+}
+.btn-outline-secondary:hover {
+    background-color: #eee !important;
+}
+
+#add-item-btn {
+    background-color: var(--color-add-item-cyan) !important;
+    border-color: var(--color-add-item-cyan) !important;
+    color: #fff !important;
+    font-weight: 600;
+}
+#add-item-btn:hover {
+    opacity: 0.9;
+}
+
+/* --- STATUS BADGES (FINAL FIX) --- */
+/* Base Style untuk SEMUA status - Menggunakan 50px agar pasti bulat/pill */
+.status-badge,
+.status-active,
+.status-process,
+.status-pending,
+.status-cancelled,
+.status-inactive {
+    padding: 6px 12px;
+    border-radius: 50px !important; /* Memaksa bentuk kapsul */
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Selesai (S) -> Hijau */
+.status-active {
+    background-color: #eafaf1;
+    color: #27ae60;
+}
+
+/* In Process (I) -> Kuning/Gold */
+.status-process {
+    background-color: #fef9e7;
+    color: #f1c40f; 
+    border: 1px solid #f1c40f;
+}
+
+/* Pending (P) -> Biru */
+.status-pending {
+    background-color: #ebf5fb;
+    color: #3498db;
+}
+
+/* Cancelled (C) -> Merah */
+.status-cancelled {
+    background-color: #fadbd8;
+    color: #c0392b;
+}
+
+/* Lainnya */
+.status-inactive {
+    background-color: #f2f3f4;
+    color: #7f8c8d;
+}
