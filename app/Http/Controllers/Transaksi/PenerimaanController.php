@@ -55,22 +55,10 @@ class PenerimaanController extends Controller
     public function create(Request $request)
     {
         $pengadaans = DB::select("
-            SELECT p.idpengadaan, p.nama_vendor, p.timestamp 
-            FROM view_pengadaan p
-            WHERE p.status IN ('I', 'P')
-            AND EXISTS (
-                SELECT 1
-                FROM detail_pengadaan dp
-                LEFT JOIN (
-                    SELECT dpn.barang_idbarang, pn.idpengadaan, SUM(dpn.jumlah_terima) as total_terima
-                    FROM detail_penerimaan dpn
-                    JOIN penerimaan pn ON dpn.idpenerimaan = pn.idpenerimaan
-                    GROUP BY dpn.barang_idbarang, pn.idpengadaan
-                ) terima ON dp.idbarang = terima.barang_idbarang AND dp.idpengadaan = terima.idpengadaan
-                WHERE dp.idpengadaan = p.idpengadaan
-                AND (dp.jumlah - COALESCE(terima.total_terima, 0)) > 0
-            )
-            ORDER BY p.idpengadaan DESC
+            SELECT idpengadaan, nama_vendor, timestamp 
+            FROM view_pengadaan 
+            WHERE status IN ('I', 'P') 
+            ORDER BY idpengadaan DESC
         ");
 
         $selectedPengadaan = null;
@@ -101,7 +89,6 @@ class PenerimaanController extends Controller
 
                 foreach ($rawDetails as $item) {
                     $sisa = $item->qty_pesan - $item->qty_sudah_terima;
-                    
                     if ($sisa > 0) {
                         $item->sisa = $sisa; 
                         $detailBarang[] = $item;
@@ -142,7 +129,7 @@ class PenerimaanController extends Controller
                 throw new \Exception("Harap masukkan jumlah terima minimal 1 barang.");
             }
 
-            $status = 'S'; 
+            $status = 'P'; 
 
             DB::insert(
                 "INSERT INTO penerimaan (created_at, status, idpengadaan, iduser) VALUES (?, ?, ?, ?)",
@@ -205,11 +192,16 @@ class PenerimaanController extends Controller
             }
 
             DB::update("UPDATE pengadaan SET status = ? WHERE idpengadaan = ?", [$statusFinal, $id_pengadaan]);
+            
             DB::update("UPDATE penerimaan SET status = ? WHERE idpenerimaan = ?", [$statusFinal, $id_penerimaan]);
+
+            if ($statusFinal == 'S') {
+                DB::update("UPDATE penerimaan SET status = 'S' WHERE idpengadaan = ?", [$id_pengadaan]);
+            }
 
             DB::commit();
             
-            return redirect()->route('transaksi.penerimaan.index')->with('success', 'Penerimaan berhasil disimpan. Status: ' . ($statusFinal == 'S' ? 'Selesai' : 'Parsial/Pending'));
+            return redirect()->route('transaksi.penerimaan.index')->with('success', 'Penerimaan berhasil disimpan. Status: ' . ($statusFinal == 'S' ? 'Selesai (Lunas)' : 'Parsial/Pending'));
 
         } catch (\Exception $e) {
             DB::rollBack();

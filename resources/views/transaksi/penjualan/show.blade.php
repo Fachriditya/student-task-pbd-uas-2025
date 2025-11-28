@@ -109,7 +109,7 @@
 
             <div class="row mb-3">
                 <div class="col-6">
-                    <span class="fw-bold text-secondary">PPN (11%)</span>
+                    <span class="fw-bold text-secondary">PPN (10%)</span>
                 </div>
                 <div class="col-6 text-end">
                     <span class="fw-bold text-dark">{{ 'Rp ' . number_format($penjualan->ppn ?? 0, 0, ',', '.') }}</span>
